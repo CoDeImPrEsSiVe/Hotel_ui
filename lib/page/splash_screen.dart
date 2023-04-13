@@ -13,21 +13,24 @@ class splash_screen extends StatefulWidget {
   final String title;
 }
 
-bool _isvisible = false;
+bool _isVisible = false;
 
 class _splash_screenState extends State<splash_screen> {
   _splash_screenState() {
     Timer(const Duration(milliseconds: 2000), () {
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const login_page()),
+            MaterialPageRoute(
+                builder: (context) => const login_page(
+                      providers: [],
+                    )),
             (route) => false);
       });
     });
 
     Timer(const Duration(milliseconds: 10), () {
       setState(() {
-        _isvisible = true;
+        _isVisible = true;
       });
     });
   }
@@ -48,7 +51,7 @@ class _splash_screenState extends State<splash_screen> {
         ),
       ),
       child: AnimatedOpacity(
-        opacity: _isvisible ? 1.0 : 0,
+        opacity: _isVisible ? 1.0 : 0,
         duration: const Duration(milliseconds: 1000),
         child: Center(
           child: Container(

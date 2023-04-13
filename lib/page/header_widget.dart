@@ -1,6 +1,5 @@
-// This widget will draw header section of all page. Wich you will get with the project source code.
-
-// ignore_for_file: unnecessary_new, library_private_types_in_public_api, no_logic_in_create_state
+// This widget will draw header section of all page. Which you will get with the project source code.
+// ignore_for_file: unnecessary_new, library_private_types_in_public_api, no_logic_in_create_state, prefer_final_fields
 
 import 'package:flutter/material.dart';
 

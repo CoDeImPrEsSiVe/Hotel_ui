@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_ui/page/User_Page.dart';
+import 'package:hotel_ui/page/widget_header.dart';
 
-class ProfilPage extends StatefulWidget {
-  const ProfilPage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
-  State<ProfilPage> createState() {
-    return _ProfilPageState();
+  State<ProfilePage> createState() {
+    return ProfilePageState();
   }
 }
 
-class _ProfilPageState extends State<ProfilPage> {
+class ProfilePageState extends State<ProfilePage> {
+  // final double _drawerIconSize = 25;
+  // final double _drawerfontsize = 17;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Profile Page',
-          style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
-        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new)),
         elevation: 0.5,
         iconTheme: const IconThemeData(
           color: Colors.white,
@@ -38,69 +43,28 @@ class _ProfilPageState extends State<ProfilPage> {
             padding: const EdgeInsets.only(top: 16, right: 16),
             child: Stack(
               children: <Widget>[
-                const Icon(Icons.notifications),
-                Positioned(
-                    right: 0,
-                    child: Container(
-                      padding: const EdgeInsets.all(1),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(6)),
-                      constraints:
-                          const BoxConstraints(minWidth: 12, minHeight: 12),
-                      child: const Text(
-                        '5',
-                        style: TextStyle(color: Colors.white, fontSize: 8),
-                        textAlign: TextAlign.center,
-                      ),
-                    ))
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: BeveledRectangleBorder(
+                        borderRadius: BorderRadius.circular(4)
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const UserPage()),
+                    );
+                  },
+                  child: Icon(Icons.person, color: Colors.grey.shade300),
+                )
               ],
             ),
           )
         ],
       ),
-      drawer: Drawer(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: const [0.0, 1.0],
-              tileMode: TileMode.clamp,
-              colors: [
-                Theme.of(context).colorScheme.secondary.withOpacity(0.2),
-                Theme.of(context).primaryColorDark.withOpacity(0.5),
-              ],
-            ),
-          ),
-          child: ListView(children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColorDark,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  stops: const [0.0, 1.0],
-                  colors: [
-                    Theme.of(context).primaryColorDark,
-                    Theme.of(context).colorScheme.secondary,
-                  ],
-                ),
-              ),
-              child: Container(
-                alignment: Alignment.bottomLeft,
-                child: const Text(
-                  'UpBuy Hotel',
-                  style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),),
-              ),
-            )
-          ]),
-        ),
-      ),
+      body:
+            const Header_Widget()
+          
     );
   }
 }
